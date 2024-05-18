@@ -32,39 +32,40 @@ export class ESJaccordion implements ComponentInterface {
     ComponentUi(): void {
         const self = this;
         document.querySelectorAll(`.${self.options.wrapperClass}`).forEach(function (accordion) {
-            (accordion as HTMLElement).querySelectorAll(`.${self.options.itemHeadingClass}`).forEach((item, index) => {
+            (accordion as HTMLElement).querySelectorAll(`.${self.options.itemHeadingClass}`).forEach((itemHeading, index) => {
                 let Indx: number = index + 1;
 
 
-                const accordionItem = (item as any).querySelector(`.${self.options.itemDataClass}`);
+                const accordionItem : any = itemHeading.closest(`.${self.options.itemClass}`)?.querySelector(`.${self.options.itemDataClass}`);
                 if (self.options.defaultItemOpen != Indx) {
-                    accordionItem.style = 'height: 0px; overflow: hidden;';
+                    accordionItem.style = 'height: 0px; overflow: hidden; margin: 0; padding: 0; border: 0;';
+                    
                 }
 
 
-                (item as HTMLElement).onclick = (e) => {
+                (itemHeading as HTMLElement).onclick = (e) => {
 
                     const accordionitemData: HTMLElement | any = (e.target as any).closest(`.${self.options.itemClass}`).querySelector(`.${self.options.itemDataClass}`);
-
+               
                     if (self.options.allItemOpenable === false) {
                         (accordion as HTMLElement).querySelectorAll(`.${self.options.itemClass}`).forEach((item) => {
-                            (item as any).querySelector(`.${self.options.itemDataClass}`).style = `height: 0px; overflow: hidden;  transition: ${self.options.toggleSpeed};`;
+                            (item as any).querySelector(`.${self.options.itemDataClass}`).style = `height: 0px; overflow: hidden;  transition: ${self.options.toggleSpeed}; margin: 0; padding: 0; border: 0;`;
                             (item as any).querySelector(`.${self.options.itemDataClass}`).removeAttribute("data-is-open");
                         });
                     }
+                 
 
 
-
-
+       
 
                     if (e.target !== accordionItem) {
 
                         if (!accordionitemData.getAttribute('data-is-open')) {
-                           
-                            accordionitemData.style = `height: ${accordionitemData.scrollHeight}px; overflow: hidden; transition: ${self.options.toggleSpeed};`;
+                        
+                            accordionitemData.style = `height: ${accordionitemData.scrollHeight}px; overflow: hidden; transition: ${self.options.toggleSpeed}; `;
                             accordionitemData.setAttribute("data-is-open", true);
                         } else {
-                            accordionitemData.style = `height: 0px; overflow: hidden;  transition: ${self.options.toggleSpeed};`;
+                            accordionitemData.style = `height: 0px; overflow: hidden;  transition: ${self.options.toggleSpeed}; margin: 0; padding: 0; border: 0;`;
                             accordionitemData.removeAttribute("data-is-open");
                         }
 
