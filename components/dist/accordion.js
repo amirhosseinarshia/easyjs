@@ -10,6 +10,7 @@ export class ESJaccordion {
             'wrapperClass',
             'itemClass',
             'itemDataClass',
+            'itemHeadingClass'
         ], this.options, 'ESJaccordion');
         this.ComponentRender();
     }
@@ -19,7 +20,7 @@ export class ESJaccordion {
     ComponentUi() {
         const self = this;
         document.querySelectorAll(`.${self.options.wrapperClass}`).forEach(function (accordion) {
-            accordion.querySelectorAll(`.${self.options.itemClass}`).forEach((item, index) => {
+            accordion.querySelectorAll(`.${self.options.itemHeadingClass}`).forEach((item, index) => {
                 let Indx = index + 1;
                 const accordionItem = item.querySelector(`.${self.options.itemDataClass}`);
                 if (self.options.defaultItemOpen != Indx) {

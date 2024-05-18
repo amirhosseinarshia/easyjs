@@ -3,6 +3,7 @@ interface ComponentSpecialOptions extends ComponentGlobalOptions {
 
     itemClass: string,
     itemDataClass: string,
+    itemHeadingClass: string,
     allItemOpenable: boolean,
     toggleSpeed: string,
     defaultItemOpen: number
@@ -19,6 +20,7 @@ export class ESJaccordion implements ComponentInterface {
             'wrapperClass',
             'itemClass',
             'itemDataClass',
+            'itemHeadingClass'
 
         ], this.options, 'ESJaccordion');
 
@@ -30,7 +32,7 @@ export class ESJaccordion implements ComponentInterface {
     ComponentUi(): void {
         const self = this;
         document.querySelectorAll(`.${self.options.wrapperClass}`).forEach(function (accordion) {
-            (accordion as HTMLElement).querySelectorAll(`.${self.options.itemClass}`).forEach((item, index) => {
+            (accordion as HTMLElement).querySelectorAll(`.${self.options.itemHeadingClass}`).forEach((item, index) => {
                 let Indx: number = index + 1;
 
 
