@@ -1,0 +1,24 @@
+.ESJmodal {
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    border: 5px solid #ebebeb;
+}
+
+.esj-accordion {
+    width: 100%;
+    background-color: white;
+   * {
+    box-sizing: border-box;
+   }
+    .esj-accordion-item {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #e6e6e6;
+    }
+    .esj-accordion-data {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #ffffff;
+    }
+}
