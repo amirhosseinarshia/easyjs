@@ -8,28 +8,34 @@
 .esj-accordion {
     width: 100%;
     background-color: white;
-   * {
-    box-sizing: border-box;
-   }
+
+    * {
+        box-sizing: border-box;
+    }
+
     .esj-accordion-item {
         // padding: 10px;
         border-radius: 5px;
-       margin: 10px 0px;
-
-
+        margin: 20px;
     }
+
     .esj-accordion-item-heading {
 
         padding: 20px;
         border-radius: 7px;
         margin: 0px 0px 0px 0px;
-        border: 1px solid #dbdbdb;
+
+        background-color: #ececec;
+        color: #636363;
     }
+
     .esj-accordion-item-data {
         border-radius: 5px;
-        background-color: #f3ffeb;
-    
+        color: #383838;
+        background-color: #d6d6d6;
         padding: 20px;
-margin: 20px;
+        margin-top: 10px;
     }
+
+
 }

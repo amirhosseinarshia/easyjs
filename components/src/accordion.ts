@@ -6,13 +6,15 @@ interface ComponentSpecialOptions extends ComponentGlobalOptions {
     itemHeadingClass: string,
     allItemOpenable: boolean,
     toggleSpeed: string,
-    defaultItemOpen: number
+    defaultItemOpen: number,
+    itemActiveClass: string | null,
 
 }
 export class ESJaccordion implements ComponentInterface {
     options: Partial<ComponentSpecialOptions> = {
         allItemOpenable: true,
-        toggleSpeed: '0.5s'
+        toggleSpeed: '0.5s',
+        itemActiveClass: null
     };
     constructor(options: Partial<ComponentSpecialOptions> = {}) {
         this.options = ESJinit.findEndOptions(this.options, options);
@@ -36,40 +38,52 @@ export class ESJaccordion implements ComponentInterface {
                 let Indx: number = index + 1;
 
 
-                const accordionItem : any = itemHeading.closest(`.${self.options.itemClass}`)?.querySelector(`.${self.options.itemDataClass}`);
+                const accordionItem: any = itemHeading.closest(`.${self.options.itemClass}`)?.querySelector(`.${self.options.itemDataClass}`);
                 if (self.options.defaultItemOpen != Indx) {
-                    accordionItem.style = 'height: 0px; overflow: hidden; margin: 0; padding: 0; border: 0;';
-                    
+                    accordionItem.style = 'display: none;';
+                
+                }else {
+                    accordionItem.closest(`.${self.options.itemClass}`).querySelector(`.${self.options.itemHeadingClass}`).classList.toggle(`${self.options.itemActiveClass}`)
                 }
+
+
 
 
                 (itemHeading as HTMLElement).onclick = (e) => {
 
                     const accordionitemData: HTMLElement | any = (e.target as any).closest(`.${self.options.itemClass}`).querySelector(`.${self.options.itemDataClass}`);
-               
+
                     if (self.options.allItemOpenable === false) {
                         (accordion as HTMLElement).querySelectorAll(`.${self.options.itemClass}`).forEach((item) => {
-                            (item as any).querySelector(`.${self.options.itemDataClass}`).style = `height: 0px; overflow: hidden;  transition: ${self.options.toggleSpeed}; margin: 0; padding: 0; border: 0;`;
+                        
+                            (item as any).querySelector(`.${self.options.itemDataClass}`).style = `display: none;`;
+                            
                             (item as any).querySelector(`.${self.options.itemDataClass}`).removeAttribute("data-is-open");
+                       
                         });
                     }
-                 
 
 
-       
+
+
 
                     if (e.target !== accordionItem) {
 
                         if (!accordionitemData.getAttribute('data-is-open')) {
-                        
-                            accordionitemData.style = `height: ${accordionitemData.scrollHeight}px; overflow: hidden; transition: ${self.options.toggleSpeed}; `;
+
+                            accordionitemData.style = `display: block;`;
                             accordionitemData.setAttribute("data-is-open", true);
+                            accordionitemData.closest(`.${self.options.itemClass}`).querySelector(`.${self.options.itemHeadingClass}`).classList.add(`${self.options.itemActiveClass}`)
                         } else {
-                            accordionitemData.style = `height: 0px; overflow: hidden;  transition: ${self.options.toggleSpeed}; margin: 0; padding: 0; border: 0;`;
+                            accordionitemData.closest(`.${self.options.itemClass}`).querySelector(`.${self.options.itemHeadingClass}`).classList.toggle(`${self.options.itemActiveClass}`)
+                            accordionitemData.style = `display: none;`;
                             accordionitemData.removeAttribute("data-is-open");
+
                         }
 
                     }
+
+
 
                 }
             })
