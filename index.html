@@ -1,1 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #ffffff;
+        }
+
+        .my-modal,
+        .my-modal-x {
+            padding: 20px;
+            background-color: #ffffff;
+            color: #5a5a5a;
+            border-radius: 10px;
+            display: none;
+            max-width: 400px;
+            height: auto;
+            overflow-y: auto;
+
+        }
+
+
+
+        .my-modal *,
+        .my-modal-x * {
+            font-family: 'vazir';
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: 0;
+            border-radius: 5px;
+        }
+
+        .close-modal {
+            background-color: #c41818;
+            color: #ffffff;
+        }
+
+        .acccept {
+            background-color: #3172ff;
+            color: #ffffff;
+        }
+
+        .act {
+            background-color: #3f3f3f !important;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- <div class="accordion-wrap">
+        <h1>accordion 1</h1>
+        <div>
+            <div class="item">
+                <h4 class="heading">
+                    javascript
+                </h4>
+                <div class="data">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto exercitationem cum reiciendis
+                    fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                    aspernatur optio consequuntur.
+                </div>
+            </div>
+            <div class="item">
+                <h4 class="heading">
+                    javascript
+                </h4>
+                <div class="data">
+                    Lorem ipsum dolor sit amet consectetur, a Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Architecto exercitationem cum reiciendis fugiat a dolorem dolore non porro quo repellat, nesciunt
+                    debitis quia eum, laborum maxime aut aspernatur optio consequuntur. Lorem ipsum dolor sit amet
+                    consectetur, adipisicing elit. Architecto exercitationem cum reiciendis fugiat a dolorem dolore non
+                    porro quo repellat, nesciunt debitis quia eum, laborum maxime aut aspernatur optio
+                    consequuntur.dipisicing elit. Architecto exercitationem cum reiciendis fugiat a dolorem dolore non
+                    porro quo repellat, nesciunt debitis quia eum, laborum maxime aut aspernatur optio consequuntur.
+                </div>
+            </div>
+            <div class="item">
+                <h4 class="heading">
+                    javascript
+                </h4>
+                <div class="data">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto exercitationem cum reiciendis
+                    fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                    aspernatur optio consequuntur.
+                </div>
+            </div>
+
+        </div>
+    </div> -->
+
+    <div style="display: flex; gap: 25px;">
+
+
+        <div class="accordion-wrap2 esj-accordion">
+            <h1>accordion 2</h1>
+            <div>
+                <div class="item  esj-accordion-item">
+                    <h4 class="heading esj-accordion-item-heading">
+                        Jquery
+                    </h4>
+                    <div class="data esj-accordion-item-data">
+                        Lorem itur, adipisicing elit. Architecto exerciloptio consequuntur. Lorem ipsum dolor sit amet
+                        consectet consequuntur.dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum
+                        maxime aut
+                        aspernatur optio consequuntur.
+                    </div>
+                </div>
+                <div class="item  esj-accordion-item">
+                    <h4 class="heading esj-accordion-item-heading">
+                        Jquery
+                    </h4>
+                    <div class="data esj-accordion-item-data">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto exercitationem cum
+                        reiciendis
+                        fugiat a Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto exercitationem cum
+                        reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur.dolorem dolore non porro quo repellat, nesciunt debitis quia eum,
+                        laborum maxime aut
+                        aspernatur optio consequuntur.
+                    </div>
+                </div>
+                <div class="item  esj-accordion-item">
+                    <h4 class="heading esj-accordion-item-heading">
+                        Jquery
+                    </h4>
+                    <div class="data esj-accordion-item-data">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto exercitationem cum
+                        reiciendis
+                        fugiat a Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto exercitationem cum
+                        reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur.dolorem dolore non porro quo repellat, nesciunt debitis quia eum,
+                        laborum maxime aut
+                        aspernatur optio consequuntur.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="accordion-wrap2 esj-accordion">
+            <h1>accordion 2</h1>
+            <div>
+                <div class="item  esj-accordion-item">
+                    <h4 class="heading esj-accordion-item-heading">
+                        Jquery
+                    </h4>
+                    <div class="data esj-accordion-item-data">
+                        Lorem itur, adipisicing elit. Architecto exerciloptio consequuntur. Lorem ipsum dolor sit amet
+                        consectet consequuntur.dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum
+                        maxime aut
+                        aspernatur optio consequuntur.
+                    </div>
+                </div>
+                <div class="item  esj-accordion-item">
+                    <h4 class="heading esj-accordion-item-heading">
+                        Jquery
+                    </h4>
+                    <div class="data esj-accordion-item-data">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto exercitationem cum
+                        reiciendis
+                        fugiat a Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto exercitationem cum
+                        reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur.dolorem dolore non porro quo repellat, nesciunt debitis quia eum,
+                        laborum maxime aut
+                        aspernatur optio consequuntur.
+                    </div>
+                </div>
+                <div class="item  esj-accordion-item">
+                    <h4 class="heading esj-accordion-item-heading">
+                        Jquery
+                    </h4>
+                    <div class="data esj-accordion-item-data">
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto exercitationem cum
+                        reiciendis
+                        fugiat a Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto exercitationem cum
+                        reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur. Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                        Architecto exercitationem cum reiciendis
+                        fugiat a dolorem dolore non porro quo repellat, nesciunt debitis quia eum, laborum maxime aut
+                        aspernatur optio consequuntur.dolorem dolore non porro quo repellat, nesciunt debitis quia eum,
+                        laborum maxime aut
+                        aspernatur optio consequuntur.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <br>
+
+
+    <button class="open-modal1">check1</button>
+    <button class="open-modal2">check2 test</button>
+
+
+    <div class="my-modal">
+
+        <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere nisi pariatur fugiat cum suscipit excepturi
+            sed quod earum ipsam. Sit necessitatibus in rem perspiciatis quae consequuntur sint, ipsam dicta
+            accusantium?
+        </p>
+        <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere nisi pariatur fugiat cum suscipit excepturi
+            sed quod earum ipsam. Sit necessitatibus in rem perspiciatis quae consequuntur sint, ipsam dicta
+            accusantium?
+        </p>
+
+        <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere nisi pariatur fugiat cum suscipit excepturi
+            sed quod earum ipsam. Sit necessitatibus in rem perspiciatis quae consequuntur sint, ipsam dicta
+            accusantium?
+        </p>
+        <button class="close-modal btn">close</button>
+        <button class="acccept btn">accept</button>
+    </div>
+
+    <div class="my-modal-x">
+        <img src="https://www.cdmi.in/courses@2x/2D3D-Game-Design.webp" style="width: 100%; height: auto;" alt="">
+        <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere nisi pariatur fugiat cum suscipit excepturi
+            sed quod earum ipsam. Sit necessitatibus in rem perspiciatis quae consequuntur sint, ipsam dicta
+            accusantium?
+        </p>
+        <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere nisi pariatur fugiat cum suscipit excepturi
+            sed quod earum ipsam. Sit necessitatibus in rem perspiciatis quae consequuntur sint, ipsam dicta
+            accusantium?
+        </p>
+
+        <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere nisi pariatur fugiat cum suscipit excepturi
+            sed quod earum ipsam. Sit necessitatibus in rem perspiciatis quae consequuntur sint, ipsam dicta
+            accusantium?
+        </p>
+        <button class="close-modal btn">close</button>
+        <button class="acccept btn">accept ok</button>
+    </div>
+
+
+
+
+
+    <script type="module">
+        import { EasyJS } from '/components/dist/easyjs.js'
+        EasyJS.debug('alert')
+        EasyJS.component('modal', {
+            handlerClass: 'open-modal1 ',
+            wrapperClass: 'my-modal',
+            animationIn: 'fadeInLeft',
+            animationOut: 'fadeOutRight',
+            animationSpeed: '1s',
+            closeByClickModal: true,
+            removerClass: 'close-modal',
+            onClose: function () {
+                console.log('m2 closed')
+            },
+            position: 'center'
+        });
+
+        EasyJS.component('modal', {
+            handlerClass: 'open-modal2',
+            wrapperClass: 'my-modal-x',
+            closeByClickModal: true,
+            removerClass: 'close-modal',
+            onClose: function () {
+                console.log('m1 closed')
+            },
+            position: 'bottom-right'
+        });
+
+
+
+
+
+        EasyJS.component('accordion', {
+            wrapperClass: 'accordion-wrap',
+            itemClass: 'item',
+            itemDataClass: 'data',
+            itemHeadingClass: 'heading',
+            toggleSpeed: '0.5s',
+            allItemOpenable: true,
+            defaultItemOpen: 2
+        });
+
+
+
+        EasyJS.component('accordion', {
+            wrapperClass: 'accordion-wrap2',
+            itemClass: 'item',
+            itemDataClass: 'data',
+            toggleSpeed: '1s',
+            allItemOpenable: true,
+            defaultItemOpen: 2,
+            itemHeadingClass: 'heading',
+            itemActiveClass: 'act'
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // EasyJS.component('scrollToShow', {
+        //     targetElements: 'body > p',
+        //     threshold: 1,
+        //     animationSpeed: '1s',
+        //     onScreen: (elm) => {
+        //         elm.style.transition = '1s'
+        //         elm.style.color = 'lightgreen';
+        //         elm.style.padding = '20px'
+        //     },
+        //     outScreen: (elm) => {
+        //         elm.style.transition = '1s'
+        //         elm.style.color = 'orange';
+        //         elm.style.padding = '10px'
+        //     },
+        // });
+
+        // EasyJS.component('scrollToShow', {
+        //     targetElements: 'body > h1',
+        //     threshold: 1,
+        //     animationSpeed: '3s',
+        //     animationIn: 'fadeIn',
+        // });
+
+    </script>
+</body>
+
+</html>
