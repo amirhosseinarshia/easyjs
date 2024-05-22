@@ -8,18 +8,24 @@ export class ESJmodal {
             closeByClickModal: true,
             onOpen: () => { },
             onClose: () => { },
-            position: 'center'
+            onAccept: () => { },
+            position: 'center',
+            closeAfterAccepted: true
         };
         this.options = ESJinit.findEndOptions(this.options, options);
         ESJinit.CheckRequiredOptions([
             'wrapperClass',
-            'handlerClass'
+            // 'handlerClass'
         ], this.options, 'ESJmodal');
         this.ComponentRender();
     }
     ComponentRender() {
         const self = this;
-        document.querySelectorAll(`.${this.options.handlerClass}`).forEach(element => {
+        if (!self.options.onOpenClass) {
+            self.ComponentUi();
+            return;
+        }
+        document.querySelectorAll(`.${this.options.onOpenClass}`).forEach(element => {
             element.onclick = function () {
                 self.ComponentUi();
             };
@@ -59,12 +65,24 @@ export class ESJmodal {
         modal.prepend(popup);
         self.options.onOpen();
         window.onclick = (e) => {
-            if ((e.target === modal && self.options.closeByClickModal) || e.target === document.querySelector(`.${self.options.removerClass}`)) {
+            if ((e.target === modal && self.options.closeByClickModal) || ESJinit.QueryAll(self.options.onCloseClass, e.target)) {
                 ESJinit.initializeAnimation(popup, `${self.options.animationOut}`);
-                setTimeout(() => {
+                popup.onanimationend = () => {
                     document.body.removeChild(modal);
-                }, 1000);
-                self.options.onClose();
+                    self.options.onClose();
+                };
+            }
+        };
+        popup.querySelector(`.${self.options.onAcceptClass}`).onclick = function () {
+            if (self.options.closeAfterAccepted) {
+                ESJinit.initializeAnimation(popup, `${self.options.animationOut}`);
+                popup.onanimationend = () => {
+                    if (self.options.onAccept === undefined) {
+                        return;
+                    }
+                    document.body.removeChild(modal);
+                    self.options.onAccept();
+                };
             }
         };
     }

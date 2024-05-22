@@ -15,6 +15,7 @@ export class EasyJS {
             ESJinit.errorHandler(`Component ${name} does not exist.`);
         }
         this.components = Components;
+        // return Component;
     }
     /*
      debug method
@@ -65,5 +66,11 @@ export class ESJinit {
                 ESJinit.errorHandler(option + ' is required option in ' + componentName + ' constructor');
             }
         });
+    }
+    static QueryAll(searchElmsClass, searchElm) {
+        if (Array.from(document.querySelectorAll(`.${searchElmsClass}`)).includes(searchElm))
+            return true;
+        else
+            return false;
     }
 }

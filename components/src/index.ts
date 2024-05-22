@@ -10,7 +10,7 @@ import { ESJaccordion } from './accordion.js';
 
 export interface ComponentGlobalOptions {
     // props
-    handlerClass: string,
+    onOpenClass: string,
     wrapperClass: string,
     animationIn: string,
     animationOut: string,

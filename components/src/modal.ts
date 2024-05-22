@@ -1,16 +1,22 @@
 
 
 
+import { EasyJS } from './easyjs.js';
 import { ComponentGlobalOptions, ComponentInterface, ESJinit } from './index.js';
 
 interface ComponentSpecialOptions extends ComponentGlobalOptions {
     closeByClickModal: boolean,
-    removerClass: string,
+    onCloseClass: string,
+    onAcceptClass: string,
     position: string,
-    animationSpeed: string
+    animationSpeed: string,
+    onAccept: CallableFunction,
+    closeAfterAccepted: boolean
+
 }
 
 export class ESJmodal implements ComponentInterface {
+
     options: Partial<ComponentSpecialOptions> = {
         animationIn: 'flipInY',
         animationOut: 'flipOutY',
@@ -18,25 +24,35 @@ export class ESJmodal implements ComponentInterface {
         closeByClickModal: true,
         onOpen: () => { },
         onClose: () => { },
-        position: 'center'
+        onAccept: () => { },
+        position: 'center',
+        closeAfterAccepted: true
+
     };
 
     constructor(options: Partial<ComponentSpecialOptions> = {}) {
         this.options = ESJinit.findEndOptions(this.options, options);
         ESJinit.CheckRequiredOptions([
             'wrapperClass',
-            'handlerClass'
+            // 'handlerClass'
         ], this.options, 'ESJmodal');
         this.ComponentRender();
+
+
     }
 
     ComponentRender(): void {
         const self: ESJmodal = this;
-        document.querySelectorAll(`.${this.options.handlerClass}`).forEach(element => {
+        if (!self.options.onOpenClass) {
+            self.ComponentUi();
+            return;
+        }
+        document.querySelectorAll(`.${this.options.onOpenClass}`).forEach(element => {
             (element as any).onclick = function () {
                 self.ComponentUi();
             }
         });
+
     }
     ComponentUi(): void {
         const self = this;
@@ -64,30 +80,62 @@ export class ESJmodal implements ComponentInterface {
 
         popup = popup.cloneNode(true);
 
+
+
         popup.style = `display: block; animation-duration: ${self.options.animationSpeed}; `;
 
 
 
         ESJinit.initializeAnimation(popup, `${self.options.animationIn}`);
+
+
+
         document.body.prepend(modal);
+
         modal.prepend(popup);
+
 
         self.options.onOpen();
 
+
+
         window.onclick = (e) => {
-            if ((e.target === modal && self.options.closeByClickModal) || e.target === document.querySelector(`.${self.options.removerClass}`)) {
+            if ((e.target === modal && self.options.closeByClickModal) || ESJinit.QueryAll(self.options.onCloseClass as string, e.target as HTMLElement)) {
                 ESJinit.initializeAnimation(popup, `${self.options.animationOut}`)
 
-            
 
-               setTimeout(() => {
-                document.body.removeChild(modal)
-               }, 1000);
-   
-
-                self.options.onClose();
+                popup.onanimationend = () => {
+                    document.body.removeChild(modal)
+                    self.options.onClose();
+                }
             }
         }
+
+
+
+        (popup.querySelector(`.${self.options.onAcceptClass}`) as HTMLElement).onclick = function () {
+
+            if (self.options.closeAfterAccepted) {
+                ESJinit.initializeAnimation(popup, `${self.options.animationOut}`)
+                popup.onanimationend = () => {
+                    if (self.options.onAccept === undefined) {
+                        return;
+                    }
+                    document.body.removeChild(modal)
+                    self.options.onAccept();
+                }
+            }
+
+
+        }
+
+
+
+
+
     }
+
+
+
 
 }

@@ -1,9 +1,16 @@
+
+
+* {
+    font-family: Verdana, Geneva, Tahoma, sans-serif !important;
+}
+
 .ESJmodal {
     width: 20px;
     height: 20px;
     border-radius: 100%;
     border: 5px solid #ebebeb;
 }
+
 
 .esj-accordion {
     width: 100%;
@@ -38,4 +45,26 @@
     }
 
 
+}
+
+.esj-modal {
+    padding: 30px;
+    background-color: #ffffff;
+    color: #5a5a5a;
+    border-radius: 10px;
+    display: none;
+    max-width: 400px;
+    max-height: 400px;
+    height: auto;
+    overflow-y: auto;
+    
+    .esj-btn {
+        padding: 10px 20px;
+        border: 0;
+        border-radius: 5px;
+    }
+    .esj-btn.esj-close-modal {
+        background-color: #ff3333;
+        color: #ffffff;
+    }
 }

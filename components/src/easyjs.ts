@@ -15,10 +15,11 @@ export class EasyJS {
         if (Component) {
             new Component(options);
         } else {
-           ESJinit.errorHandler(`Component ${name} does not exist.`);
+            ESJinit.errorHandler(`Component ${name} does not exist.`);
         }
         this.components = Components;
 
+        // return Component;
     }
     /* 
      debug method 
@@ -38,8 +39,6 @@ export class EasyJS {
 
 export class ESJinit {
     public static initializeAnimation(elm: Element, animationname: string): void {
-       
-
         elm.classList.add('animate__animated', 'animate__' + animationname);
     }
     public static findEndOptions(defaultoptions: object | any, useroptions: object | any): object {
@@ -77,11 +76,17 @@ export class ESJinit {
         }
     }
 
-    public static CheckRequiredOptions(requiredOptions: string[] = [] , options : object,componentName : string): void {
+    public static CheckRequiredOptions(requiredOptions: string[] = [], options: object, componentName: string): void {
         requiredOptions.forEach(option => {
             if (!(option in options)) {
-                ESJinit.errorHandler(option + ' is required option in '+componentName+' constructor');
+                ESJinit.errorHandler(option + ' is required option in ' + componentName + ' constructor');
             }
         });
+    }
+    public static QueryAll(searchElmsClass: string, searchElm: HTMLElement) {
+        if ((Array.from(document.querySelectorAll(`.${searchElmsClass}`)) as any).includes(searchElm))
+            return true;
+        else
+            return false;
     }
 }

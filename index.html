@@ -6,26 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
-        
         body {
             background-color: #ffffff;
         }
 
-        .my-modal,
-        .my-modal-x {
-            padding: 20px;
-            background-color: #ffffff;
-            color: #5a5a5a;
-            border-radius: 10px;
-            display: none;
-            max-width: 400px;
-            height: auto;
-            overflow-y: auto;
 
-        }
 
 
 
@@ -54,6 +41,8 @@
             background-color: #3f3f3f !important;
         }
     </style>
+    <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
@@ -100,7 +89,7 @@
         </div>
     </div> -->
 
-    <div style="display: flex; gap: 25px;">
+    <!-- <div style="display: flex; gap: 25px;">
 
 
         <div class="accordion-wrap2 esj-accordion">
@@ -245,7 +234,7 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
     <br>
 
 
@@ -253,29 +242,24 @@
     <button class="open-modal2">check2 test</button>
 
 
-    <div class="my-modal">
+    <div class="my-modal esj-modal ">
+        <button class="esj-close-modal esj-btn">X</button>
+        <div class="w3-green w3-panel w3-padding-16 w3-round-medium w3-hover-aqua">
+            this is Easyjs Modal
+        </div>
 
-        <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere nisi pariatur fugiat cum suscipit excepturi
-            sed quod earum ipsam. Sit necessitatibus in rem perspiciatis quae consequuntur sint, ipsam dicta
-            accusantium?
-        </p>
-        <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere nisi pariatur fugiat cum suscipit excepturi
-            sed quod earum ipsam. Sit necessitatibus in rem perspiciatis quae consequuntur sint, ipsam dicta
-            accusantium?
-        </p>
+        <div class="w3-card w3-padding w3-round-large w3-margin-bottom">
 
-        <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere nisi pariatur fugiat cum suscipit excepturi
-            sed quod earum ipsam. Sit necessitatibus in rem perspiciatis quae consequuntur sint, ipsam dicta
-            accusantium?
-        </p>
-        <button class="close-modal btn">close</button>
-        <button class="acccept btn">accept</button>
+            Lorem ipsu Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ad recusandae optio temporibus. Nobis
+            nihil magni itaque dignissimos fugit quasi natus iste sint non
+            <button class="w3-btn w3-red w3-small w3-round-medium">check</button>
+        </div>
+
+        <button class="esj-close-modal esj-btn">close</button>
+        <button class="acccept btn xxx">xxx</button>
     </div>
 
-    <div class="my-modal-x">
+    <!-- <div class="my-modal-x">
         <img src="https://www.cdmi.in/courses@2x/2D3D-Game-Design.webp" style="width: 100%; height: auto;" alt="">
         <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Facere nisi pariatur fugiat cum suscipit excepturi
@@ -295,40 +279,63 @@
         </p>
         <button class="close-modal btn">close</button>
         <button class="acccept btn">accept ok</button>
-    </div>
+    </div> -->
 
-
+    <button class="v">v</button>
 
 
 
     <script type="module">
+
         import { EasyJS } from '/components/dist/easyjs.js'
         EasyJS.debug('alert')
         EasyJS.component('modal', {
-            handlerClass: 'open-modal1 ',
+            onOpenClass: 'open-modal1 ',
             wrapperClass: 'my-modal',
-            animationIn: 'fadeInLeft',
-            animationOut: 'fadeOutRight',
-            animationSpeed: '1s',
+            animationIn: 'fadeInDown',
+            animationOut: 'fadeOutUp',
+            animationSpeed: '0.4s',
             closeByClickModal: true,
-            removerClass: 'close-modal',
-            onClose: function () {
-                console.log('m2 closed')
-            },
-            position: 'center'
-        });
+            onCloseClass: 'esj-close-modal',
+            position: 'center',
+            onAcceptClass: 'acccept',
+            closeAfterAccepted: true,
+            onAccept: function () {
+                EasyJS.component('modal', {
 
-        EasyJS.component('modal', {
-            handlerClass: 'open-modal2',
-            wrapperClass: 'my-modal-x',
-            closeByClickModal: true,
-            removerClass: 'close-modal',
-            onClose: function () {
-                console.log('m1 closed')
-            },
-            position: 'bottom-right'
-        });
+                    wrapperClass: 'my-modal',
+                    animationIn: 'fadeInDown',
+                    animationOut: 'fadeOutUp',
+                    animationSpeed: '0.4s',
+                    closeByClickModal: true,
+                    onCloseClass: 'esj-close-modal',
+                    position: 'center',
+                    onAcceptClass: 'acccept',
+                    closeAfterAccepted: true,
+                    onAccept: function () {
 
+                        EasyJS.component('modal', {
+
+                            wrapperClass: 'my-modal',
+                            animationIn: 'heartBeat',
+                            animationOut: 'rotateOut',
+                            animationSpeed: '3s',
+                            closeByClickModal: true,
+                            onCloseClass: 'esj-close-modal',
+                            position: 'center',
+                            onAcceptClass: 'acccept',
+                            closeAfterAccepted: false,
+                            onAccept: function () {
+
+                            }
+
+                        });
+                    }
+
+                });
+            }
+
+        });
 
 
 
