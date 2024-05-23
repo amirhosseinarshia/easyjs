@@ -48,11 +48,11 @@
 <body>
 
 
-    <!-- <div class="accordion-wrap">
+     <div class="accordion-wrap">
         <h1>accordion 1</h1>
         <div>
             <div class="item">
-                <h4 class="heading">
+                <h4 class="heading ">
                     javascript
                 </h4>
                 <div class="data">
@@ -87,7 +87,7 @@
             </div>
 
         </div>
-    </div> -->
+    </div> 
 
     <!-- <div style="display: flex; gap: 25px;">
 
@@ -234,11 +234,11 @@
 
             </div>
         </div>
-    </div> -->
+    </div> 
     <br>
 
 
-    <button class="open-modal1">check1</button>
+     <button class="open-modal1">check1</button>
     <button class="open-modal2">check2 test</button>
 
 
@@ -257,7 +257,7 @@
 
         <button class="esj-close-modal esj-btn">close</button>
         <button class="acccept btn xxx">xxx</button>
-    </div>
+    </div> -->
 
     <!-- <div class="my-modal-x">
         <img src="https://www.cdmi.in/courses@2x/2D3D-Game-Design.webp" style="width: 100%; height: auto;" alt="">
@@ -281,28 +281,13 @@
         <button class="acccept btn">accept ok</button>
     </div> -->
 
-    <button class="v">v</button>
 
 
 
     <script type="module">
 
         import { EasyJS } from '/components/dist/easyjs.js'
-        EasyJS.debug('alert')
-        EasyJS.component('modal', {
-            onOpenClass: 'open-modal1 ',
-            wrapperClass: 'my-modal',
-            // animationIn: 'fadeInDown',
-            // animationOut: 'fadeOutUp',
-            animationSpeed: '1s',
-            closeByClickModal: true,
-            onCloseClass: 'esj-close-modal',
-            position: 'center',
-            onAcceptClass: 'acccept',
-            closeAfterAccepted: true,
-            onAccept: () => alert('salam')
-
-        });
+        EasyJS.debug('alert');
 
 
 
@@ -313,22 +298,67 @@
             itemDataClass: 'data',
             itemHeadingClass: 'heading',
             toggleSpeed: '0.5s',
-            allItemOpenable: true,
-            defaultItemOpen: 2
+            allItemOpenable: false,
+            defaultItemOpen: 1,
+            icon:'arrow',
+            itemActiveClass: 'w3-green'
         });
 
 
 
-        EasyJS.component('accordion', {
-            wrapperClass: 'accordion-wrap2',
-            itemClass: 'item',
-            itemDataClass: 'data',
-            toggleSpeed: '1s',
-            allItemOpenable: true,
-            defaultItemOpen: 2,
-            itemHeadingClass: 'heading',
-            itemActiveClass: 'act'
+        EasyJS.component('scrollToShow', {
+            targetElements: '.accordion-wrap .item .data',
+            threshold: 1,
+            animationSpeed: '2s',
+            animationIn: 'fadeInUp',
+            onScreen: (elm) => {
+                // elm.style.transition = '1s'
+                // elm.style.color = 'lightgreen';
+                // elm.style.padding = '20px'
+            },
+            outScreen: (elm) => {
+                // elm.style.transition = '1s'
+                // elm.style.color = 'orange';
+                // elm.style.padding = '10px'
+            },
         });
+
+
+
+        // EasyJS.component('accordion', {
+        //     wrapperClass: 'accordion-wrap2',
+        //     itemClass: 'item',
+        //     itemDataClass: 'data',
+        //     toggleSpeed: '1s',
+        //     allItemOpenable: true,
+        //     defaultItemOpen: 2,
+        //     itemHeadingClass: 'heading',
+        //     itemActiveClass: 'act'
+        // });
+
+
+
+
+
+        // EasyJS.component('modal', {
+        //     onOpenClass: 'open-modal1 ',
+        //     wrapperClass: 'my-modal',
+        //     // animationIn: 'fadeInDown',
+        //     // animationOut: 'fadeOutUp',
+        //     animationSpeed: '1s',
+        //     closeByClickModal: true,
+        //     onCloseClass: 'esj-close-modal',
+        //     position: 'center',
+        //     onAcceptClass: 'acccept',
+        //     closeAfterAccepted: true,
+        //     onAccept: () => alert('salam')
+
+        // });
+
+
+
+
+       
 
 
 
