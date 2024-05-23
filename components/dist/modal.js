@@ -77,13 +77,13 @@ export class ESJmodal {
             if (self.options.closeAfterAccepted) {
                 ESJinit.initializeAnimation(popup, `${self.options.animationOut}`);
                 popup.onanimationend = () => {
-                    if (self.options.onAccept === undefined) {
-                        return;
-                    }
                     document.body.removeChild(modal);
-                    self.options.onAccept();
                 };
             }
+            if (self.options.onAccept === undefined) {
+                return;
+            }
+            self.options.onAccept();
         };
     }
 }

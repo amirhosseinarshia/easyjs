@@ -292,48 +292,15 @@
         EasyJS.component('modal', {
             onOpenClass: 'open-modal1 ',
             wrapperClass: 'my-modal',
-            animationIn: 'fadeInDown',
-            animationOut: 'fadeOutUp',
-            animationSpeed: '0.4s',
+            // animationIn: 'fadeInDown',
+            // animationOut: 'fadeOutUp',
+            animationSpeed: '1s',
             closeByClickModal: true,
             onCloseClass: 'esj-close-modal',
             position: 'center',
             onAcceptClass: 'acccept',
             closeAfterAccepted: true,
-            onAccept: function () {
-                EasyJS.component('modal', {
-
-                    wrapperClass: 'my-modal',
-                    animationIn: 'fadeInDown',
-                    animationOut: 'fadeOutUp',
-                    animationSpeed: '0.4s',
-                    closeByClickModal: true,
-                    onCloseClass: 'esj-close-modal',
-                    position: 'center',
-                    onAcceptClass: 'acccept',
-                    closeAfterAccepted: true,
-                    onAccept: function () {
-
-                        EasyJS.component('modal', {
-
-                            wrapperClass: 'my-modal',
-                            animationIn: 'heartBeat',
-                            animationOut: 'rotateOut',
-                            animationSpeed: '3s',
-                            closeByClickModal: true,
-                            onCloseClass: 'esj-close-modal',
-                            position: 'center',
-                            onAcceptClass: 'acccept',
-                            closeAfterAccepted: false,
-                            onAccept: function () {
-
-                            }
-
-                        });
-                    }
-
-                });
-            }
+            onAccept: () => alert('salam')
 
         });
 
