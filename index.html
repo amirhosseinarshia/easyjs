@@ -40,6 +40,17 @@
         .act {
             background-color: #3f3f3f !important;
         }
+
+        .indicator-wrapper {
+            width: 400px;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0px 0px 50px rgba(128, 128, 128, 0.1);
+            position: fixed;
+            visibility: hidden;
+            
+            
+        }
     </style>
     <link rel="stylesheet" href="style.css">
 
@@ -47,7 +58,7 @@
 
 <body>
 
-
+<!-- 
      <div class="accordion-wrap">
         <h1>accordion 1</h1>
         <div>
@@ -87,7 +98,7 @@
             </div>
 
         </div>
-    </div> 
+    </div>  -->
 
     <!-- <div style="display: flex; gap: 25px;">
 
@@ -284,6 +295,33 @@
 
 
 
+
+
+     <section class="w3-container w3-light-grey magic-menu">
+          <ul class="w3-row w3-center">
+                 <li class="w3-col m3">
+                    TypeScript
+                 </li>
+                 <li  class="w3-col m3">
+                    Javascript
+                 </li>
+                 <li class="w3-col m3">
+                    jQuery
+                 </li>
+                 <li class="w3-col m3">
+                    React
+                 </li>
+          </ul>
+
+          <div class="w3-container indicator-wrapper">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis eligendi repellat possimus debitis consectetur. Accusantium eos magni molestiae quos, blanditiis quibusdam necessitatibus quisquam, repellendus hic fugiat earum! Possimus, dolore distinctio.
+          </div>
+     </section>
+
+
+
+
+
     <script type="module">
 
         import { EasyJS } from '/components/dist/easyjs.js'
@@ -291,37 +329,84 @@
 
 
 
+        // EasyJS.component('indicator',{
+        //     wrapperClass: 'magic-menu',
+        //     itemClass: 'w3-col',
+        //     indicatorClass : 'indicator-wrapper'
+        // })
 
-        EasyJS.component('accordion', {
-            wrapperClass: 'accordion-wrap',
-            itemClass: 'item',
-            itemDataClass: 'data',
-            itemHeadingClass: 'heading',
-            toggleSpeed: '0.5s',
-            allItemOpenable: false,
-            defaultItemOpen: 1,
-            icon:'arrow',
-            itemActiveClass: 'w3-green'
-        });
+
+ 
 
 
 
-        EasyJS.component('scrollToShow', {
-            targetElements: '.accordion-wrap .item .data',
-            threshold: 1,
-            animationSpeed: '2s',
-            animationIn: 'fadeInUp',
-            onScreen: (elm) => {
-                // elm.style.transition = '1s'
-                // elm.style.color = 'lightgreen';
-                // elm.style.padding = '20px'
-            },
-            outScreen: (elm) => {
-                // elm.style.transition = '1s'
-                // elm.style.color = 'orange';
-                // elm.style.padding = '10px'
-            },
-        });
+document.querySelectorAll('.magic-menu li[class]').forEach(function(item){
+    const indicator = document.querySelector('.indicator-wrapper');
+    window.addEventListener('mousemove',function(we){
+        if(!we.target.className.split(' ').includes('w3-col')) {
+            indicator.style = `visibility: hidden;`;
+        }
+    })
+    item.addEventListener('mousemove',function(e){
+        const y = e.pageY;
+        const x = e.pageX;
+
+        item.closest('.magic-menu').querySelectorAll('li').forEach(function(elm){
+            elm.classList.remove('w3-pink');
+        })
+
+        item.classList.add('w3-pink');
+
+      
+        indicator.style = `left: ${x}px; visibility: visible; transition: 1s;`;
+      
+    })
+   
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // EasyJS.component('accordion', {
+        //     wrapperClass: 'accordion-wrap',
+        //     itemClass: 'item',
+        //     itemDataClass: 'data',
+        //     itemHeadingClass: 'heading',
+        //     toggleSpeed: '0.5s',
+        //     allItemOpenable: false,
+        //     defaultItemOpen: 1,
+        //     icon:'arrow',
+        //     itemActiveClass: 'w3-green'
+        // });
+
+
+
+        // EasyJS.component('scrollToShow', {
+        //     targetElements: '.accordion-wrap .item .data',
+        //     threshold: 1,
+        //     animationSpeed: '2s',
+        //     animationIn: 'fadeInUp',
+        //     onScreen: (elm) => {
+        //         // elm.style.transition = '1s'
+        //         // elm.style.color = 'lightgreen';
+        //         // elm.style.padding = '20px'
+        //     },
+        //     outScreen: (elm) => {
+        //         // elm.style.transition = '1s'
+        //         // elm.style.color = 'orange';
+        //         // elm.style.padding = '10px'
+        //     },
+        // });
 
 
 
