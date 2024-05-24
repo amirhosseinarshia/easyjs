@@ -10,7 +10,7 @@ interface ComponentSpecialOptions extends ComponentGlobalOptions {
     indicatorAnimationOut: string,
     indicatorAnimationSpeed: string,
     indicatorMovingSpeed: string,
-    hideIndicatorWhenEventTargetNotAnIndicatorObject: boolean,
+    hideIndicatorWhenEventTargetIsNotIndicatorChild: boolean,
     indicatorMove: CallableFunction,
     indicatorStop: CallableFunction,
     indicatorPositionMode: string,
@@ -20,16 +20,16 @@ interface ComponentSpecialOptions extends ComponentGlobalOptions {
 }
 export class ESJindicator implements ComponentInterface {
     options: Partial<ComponentSpecialOptions> = {
-        mode: 'both',
-        events: ['mousemove', 'click'],
+        mode: 'both', // done
+        events: ['mousemove', 'click'], // done
         indicatorDefaultHidden: false, // done
-        indicatorAnimationIn: '',
-        indicatorAnimationOut: '',
-        hideIndicatorWhenEventTargetNotAnIndicatorObject: false,
+        indicatorAnimationIn: '', // done
+        indicatorAnimationOut: '', // done
+        hideIndicatorWhenEventTargetIsNotIndicatorChild: false, // done
         indicatorMove: (indicator: Element, targetItem: Element) => { }, // done
         indicatorStop: (indicator: Element, targetItem: Element) => { }, // done
-        indicatorMovingSpeed: '0.5s', // done
-        indicatorAnimationSpeed: '0.5s', // done
+        indicatorMovingSpeed: '1s', // done
+        indicatorAnimationSpeed: '1s', // done
         indicatorPositionMode: 'relative', // done
         indicatorRatio: 'center', // done
         indicatorYmargin: '0', // done
@@ -55,14 +55,17 @@ export class ESJindicator implements ComponentInterface {
 
 
 
-        this.options.events?.forEach(eventname => {
 
+
+
+        this.options.events?.forEach(eventname => {
 
 
 
 
             document.querySelectorAll(`.${self.options.wrapperClass}`).forEach((wrap) => {
                 wrap.querySelectorAll(`.${self.options.itemsClass}`).forEach((item) => {
+
 
 
 
@@ -83,7 +86,16 @@ export class ESJindicator implements ComponentInterface {
         let y: number = event.pageY;
         let x: number = event.pageX;
         const indicator: HTMLElement | null = document.querySelector(`.${self.options.indicatorClass}`);
-        (indicator as HTMLElement).style.visibility = 'visible'
+
+
+
+        (indicator as HTMLElement).style.visibility = 'visible';
+        ESJinit.initializeAnimation(indicator as HTMLElement, self.options.indicatorAnimationIn as string, self.options.indicatorAnimationOut as string)
+
+
+
+
+
         const indicatorWidth = indicator?.clientWidth as number;
         const indicatorHeight = indicator?.clientHeight as number;
 
@@ -92,6 +104,24 @@ export class ESJindicator implements ComponentInterface {
 
 
         self.options.events?.forEach(eventname => {
+
+
+            if (self.options.hideIndicatorWhenEventTargetIsNotIndicatorChild) {
+                window.addEventListener(`${eventname}`, function (ew) {
+                    if (ew.target === currentItem.closest(`.${self.options.wrapperClass}`)) {
+                        (indicator as HTMLElement).style.visibility = 'visible';
+                    }
+                    if (currentItem.closest(`.${self.options.wrapperClass}`)?.contains(ew.target as HTMLElement)) {
+                        (indicator as HTMLElement).style.visibility = 'visible';
+                    } else {
+                        if(self.options.indicatorAnimationOut === '') {
+                            (indicator as HTMLElement).style.visibility = 'hidden';
+                        }
+                        ESJinit.initializeAnimation(indicator as HTMLElement, self.options.indicatorAnimationOut as string, self.options.indicatorAnimationIn as string)
+                    }
+                });
+            }
+
 
             window.addEventListener(`${eventname}`, function (e: Event) {
                 if (((e as any).pageX + indicatorWidth) >= window.innerWidth && mode === 'x') {
@@ -135,7 +165,11 @@ export class ESJindicator implements ComponentInterface {
 
 
 
+        (indicator as HTMLElement).style.animationDuration = `${this.options.indicatorAnimationSpeed} `;
 
+
+
+        
 
 
 

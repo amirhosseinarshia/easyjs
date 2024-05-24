@@ -2,16 +2,16 @@ import { ESJinit } from './index.js';
 export class ESJindicator {
     constructor(options = {}) {
         this.options = {
-            mode: 'both',
-            events: ['mousemove', 'click'],
+            mode: 'both', // done
+            events: ['mousemove', 'click'], // done
             indicatorDefaultHidden: false, // done
-            indicatorAnimationIn: '',
-            indicatorAnimationOut: '',
-            hideIndicatorWhenEventTargetNotAnIndicatorObject: false,
+            indicatorAnimationIn: '', // done
+            indicatorAnimationOut: '', // done
+            hideIndicatorWhenEventTargetIsNotIndicatorChild: false, // done
             indicatorMove: (indicator, targetItem) => { }, // done
             indicatorStop: (indicator, targetItem) => { }, // done
-            indicatorMovingSpeed: '0.5s', // done
-            indicatorAnimationSpeed: '0.5s', // done
+            indicatorMovingSpeed: '1s', // done
+            indicatorAnimationSpeed: '1s', // done
             indicatorPositionMode: 'relative', // done
             indicatorRatio: 'center', // done
             indicatorYmargin: '0', // done
@@ -49,11 +49,29 @@ export class ESJindicator {
         let x = event.pageX;
         const indicator = document.querySelector(`.${self.options.indicatorClass}`);
         indicator.style.visibility = 'visible';
+        ESJinit.initializeAnimation(indicator, self.options.indicatorAnimationIn, self.options.indicatorAnimationOut);
         const indicatorWidth = indicator === null || indicator === void 0 ? void 0 : indicator.clientWidth;
         const indicatorHeight = indicator === null || indicator === void 0 ? void 0 : indicator.clientHeight;
         const indicatorXmargin = (self.options.indicatorXmargin === 'auto') ? currentItem.clientWidth + 'px' : self.options.indicatorXmargin;
         const indicatorYmargin = (self.options.indicatorYmargin === 'auto') ? currentItem.clientHeight + 'px' : self.options.indicatorYmargin;
         (_a = self.options.events) === null || _a === void 0 ? void 0 : _a.forEach(eventname => {
+            if (self.options.hideIndicatorWhenEventTargetIsNotIndicatorChild) {
+                window.addEventListener(`${eventname}`, function (ew) {
+                    var _a;
+                    if (ew.target === currentItem.closest(`.${self.options.wrapperClass}`)) {
+                        indicator.style.visibility = 'visible';
+                    }
+                    if ((_a = currentItem.closest(`.${self.options.wrapperClass}`)) === null || _a === void 0 ? void 0 : _a.contains(ew.target)) {
+                        indicator.style.visibility = 'visible';
+                    }
+                    else {
+                        if (self.options.indicatorAnimationOut === '') {
+                            indicator.style.visibility = 'hidden';
+                        }
+                        ESJinit.initializeAnimation(indicator, self.options.indicatorAnimationOut, self.options.indicatorAnimationIn);
+                    }
+                });
+            }
             window.addEventListener(`${eventname}`, function (e) {
                 if ((e.pageX + indicatorWidth) >= window.innerWidth && mode === 'x') {
                     indicator.style.left = `${window.innerWidth - indicatorWidth}px`;
@@ -80,6 +98,7 @@ export class ESJindicator {
         }
         indicator.style.margin = `${indicatorYmargin} ${indicatorXmargin}`;
         indicator.style.transition = `${this.options.indicatorMovingSpeed} `;
+        indicator.style.animationDuration = `${this.options.indicatorAnimationSpeed} `;
         if (self.options.indicatorMove)
             self.options.indicatorMove(indicator, currentItem);
         indicator === null || indicator === void 0 ? void 0 : indicator.addEventListener('transitionend', function () {

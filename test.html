@@ -191,7 +191,8 @@
             ,
             indicatorStop: function(indicator,item){
     
-            }
+            },
+            hideIndicatorWhenEventTargetIsNotIndicatorChild : true
         })
 
 
@@ -209,8 +210,12 @@
             indicatorYmargin: '0px',
             indicatorMove: function(indicator,item){
                 indicator.innerHTML = item.innerHTML
+
             },
-            hideIndicatorWhenEventTargetNotAnIndicatorObject : true
+            indicatorStop: function(indicator,item){
+
+},
+            hideIndicatorWhenEventTargetIsNotIndicatorChild : true
         })
 
 
