@@ -78,6 +78,13 @@
         .side {
             background-color: #091a3d;
         }
+        .indicator {
+            background-color: #000000;
+            padding:20px;
+            border-radius: 7px;
+            
+            z-index: -8;
+        }
     </style>
     <link rel="stylesheet" href="style.css">
 
@@ -86,7 +93,7 @@
 <body>
 
 
-<section class="container w3-light-grey magic-menu">
+<!-- <section class="container w3-light-grey magic-menu">
         <ul style="display: flex; align-items: center; justify-content: space-between;">
             <li class="item">
                 <img src="https://static-00.iconduck.com/assets.00/typescript-icon-icon-2048x2048-2rhh1z66.png" width="30px" height="30px" alt="">
@@ -160,8 +167,44 @@
         </div>
 </div>
 
-</section>
+</section> -->
 
+
+
+
+<section class="w3-container w3-border w3-wide w3-margin my-test-indicator" style="width: 300px;"> 
+    <ul>
+        <li class="item">
+            <img src="https://static-00.iconduck.com/assets.00/typescript-icon-icon-2048x2048-2rhh1z66.png" width="30px" height="30px" alt="">
+            TypeScript
+            TypeScript
+            TypeScript
+        </li>
+        <li class="item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" width="30px" height="30px" alt="">
+            Javascript
+        </li>
+        <li class="item">
+            <img src="https://hdpng.com/images/logo-jquery-png--512.png" width="30px" height="30px" alt="">
+            jQuery
+        </li>
+        <li class="item">
+            <img src="https://static-00.iconduck.com/assets.00/react-javascript-js-framework-facebook-icon-512x455-jctj7y5w.png" width="30px" height="30px" alt="">
+            React
+        </li>
+        <li class="item">
+            
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/1280px-Sass_Logo_Color.svg.png" width="30px" height="30px" alt="">
+            Scss
+        </li>
+        <li class="item">
+            <img src="https://w3schoolsua.github.io/images/w3css_logo.png" width="30px" height="30px" alt="">
+            
+            W3css
+        </li>
+    </ul>
+    <div class="indicator"></div>
+</section>
 
 
 
@@ -171,52 +214,83 @@
         EasyJS.debug('alert');
 
 
-
         EasyJS.component('indicator',{
-            wrapperClass: 'magic-menu',
+            wrapperClass: 'my-test-indicator',
             itemsClass: 'item',
-            indicatorClass : 'indicator-wrapper',
-            mode:'x',
+            indicatorClass : 'indicator',
+            mode:'y',
             indicatorDefaultHidden: true,
-            indicatorMovingSpeed: '1s',
+            indicatorMovingSpeed: '0.5s',
             events: ['click'],
             indicatorRatio : 'center',
             indicatorXmargin: '0px',
-            indicatorYmargin: '-0px',
+            indicatorYmargin: '0px',
+            indicatorAnimationIn: 'flipInX', 
+        indicatorAnimationOut: 'flipOutX', 
             indicatorMove: function(indicator,item){
           
-                indicator.innerHTML = item.innerHTML
- 
+                // indicator.innerHTML = item.innerHTML
+                // item.style.color = 'black'
+              
             }
             ,
             indicatorStop: function(indicator,item){
-    
+                document.querySelectorAll('.item').forEach(function(el){
+                    el.style.color = 'black'
+                })
+                  item.style.color = 'white'
             },
-            hideIndicatorWhenEventTargetIsNotIndicatorChild : true
+            hideIndicatorWhenEventTargetIsNotIndicatorChild : true,
+            cover: true,
+            eventsMaxSensitivity : false
         })
+
+
+//         EasyJS.component('indicator',{
+//             wrapperClass: 'magic-menu',
+//             itemsClass: 'item',
+//             indicatorClass : 'indicator-wrapper',
+//             mode:'x',
+//             indicatorDefaultHidden: true,
+//             indicatorMovingSpeed: '1s',
+//             events: ['click'],
+//             indicatorRatio : 'center',
+//             indicatorXmargin: '0px',
+//             indicatorYmargin: '-0px',
+//             indicatorMove: function(indicator,item){
+          
+//                 indicator.innerHTML = item.innerHTML
+ 
+//             }
+//             ,
+//             indicatorStop: function(indicator,item){
+    
+//             },
+//             hideIndicatorWhenEventTargetIsNotIndicatorChild : true
+//         })
 
 
  
-        EasyJS.component('indicator',{
-            wrapperClass: 'magic-menu2',
-            itemsClass: 'item',
-            indicatorClass : 'indicator-wrapper2',
-            mode:'x',
-            indicatorDefaultHidden: true,
-            indicatorMovingSpeed: '0.5s',
-            events: ['mouseover'],
-            indicatorRatio : 'center',
-            indicatorXmargin: '0px',
-            indicatorYmargin: '0px',
-            indicatorMove: function(indicator,item){
-                indicator.innerHTML = item.innerHTML
+//         EasyJS.component('indicator',{
+//             wrapperClass: 'magic-menu2',
+//             itemsClass: 'item',
+//             indicatorClass : 'indicator-wrapper2',
+//             mode:'x',
+//             indicatorDefaultHidden: true,
+//             indicatorMovingSpeed: '0.5s',
+//             events: ['mouseover'],
+//             indicatorRatio : 'center',
+//             indicatorXmargin: '0px',
+//             indicatorYmargin: '0px',
+//             indicatorMove: function(indicator,item){
+//                 indicator.innerHTML = item.innerHTML
 
-            },
-            indicatorStop: function(indicator,item){
+//             },
+//             indicatorStop: function(indicator,item){
 
-},
-            hideIndicatorWhenEventTargetIsNotIndicatorChild : true
-        })
+// },
+//             hideIndicatorWhenEventTargetIsNotIndicatorChild : true
+//         })
 
 
 

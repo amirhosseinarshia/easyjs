@@ -12,10 +12,12 @@ export class ESJindicator {
             indicatorStop: (indicator, targetItem) => { }, // done
             indicatorMovingSpeed: '1s', // done
             indicatorAnimationSpeed: '1s', // done
-            indicatorPositionMode: 'relative', // done
+            indicatorPositionMode: 'fixed', // done
             indicatorRatio: 'center', // done
             indicatorYmargin: '0', // done
             indicatorXmargin: 'auto', // done
+            cover: true, // done
+            eventsMaxSensitivity: false // done
         };
         this.options = ESJinit.findEndOptions(this.options, options);
         ESJinit.CheckRequiredOptions([
@@ -50,6 +52,10 @@ export class ESJindicator {
         const indicator = document.querySelector(`.${self.options.indicatorClass}`);
         indicator.style.visibility = 'visible';
         ESJinit.initializeAnimation(indicator, self.options.indicatorAnimationIn, self.options.indicatorAnimationOut);
+        if (self.options.cover) {
+            indicator.style.width = currentItem.scrollWidth + 'px';
+            indicator.style.height = currentItem.scrollHeight + 'px';
+        }
         const indicatorWidth = indicator === null || indicator === void 0 ? void 0 : indicator.clientWidth;
         const indicatorHeight = indicator === null || indicator === void 0 ? void 0 : indicator.clientHeight;
         const indicatorXmargin = (self.options.indicatorXmargin === 'auto') ? currentItem.clientWidth + 'px' : self.options.indicatorXmargin;
@@ -89,6 +95,10 @@ export class ESJindicator {
         else if (self.options.indicatorRatio === 'end') {
             x = x - currentItem.scrollWidth;
             y = y - currentItem.scrollHeight;
+        }
+        if (self.options.eventsMaxSensitivity === false) {
+            x = currentItem.getBoundingClientRect().width;
+            y = currentItem.getBoundingClientRect().top;
         }
         if (mode === 'both' || mode === 'x') {
             indicator.style.left = `${x}px`;

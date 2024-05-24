@@ -17,6 +17,8 @@ interface ComponentSpecialOptions extends ComponentGlobalOptions {
     indicatorRatio: string,
     indicatorXmargin: string,
     indicatorYmargin: string,
+    cover: boolean,
+    eventsMaxSensitivity: boolean
 }
 export class ESJindicator implements ComponentInterface {
     options: Partial<ComponentSpecialOptions> = {
@@ -30,10 +32,12 @@ export class ESJindicator implements ComponentInterface {
         indicatorStop: (indicator: Element, targetItem: Element) => { }, // done
         indicatorMovingSpeed: '1s', // done
         indicatorAnimationSpeed: '1s', // done
-        indicatorPositionMode: 'relative', // done
+        indicatorPositionMode: 'fixed', // done
         indicatorRatio: 'center', // done
         indicatorYmargin: '0', // done
         indicatorXmargin: 'auto', // done
+        cover: true, // done
+        eventsMaxSensitivity: false // done
     };
     constructor(options: Partial<ComponentSpecialOptions> = {}) {
         this.options = ESJinit.findEndOptions(this.options, options);
@@ -90,7 +94,27 @@ export class ESJindicator implements ComponentInterface {
 
 
         (indicator as HTMLElement).style.visibility = 'visible';
-        ESJinit.initializeAnimation(indicator as HTMLElement, self.options.indicatorAnimationIn as string, self.options.indicatorAnimationOut as string)
+        ESJinit.initializeAnimation(indicator as HTMLElement, self.options.indicatorAnimationIn as string, self.options.indicatorAnimationOut as string);
+
+
+
+
+        if (self.options.cover) {
+            (indicator as HTMLElement).style.width = currentItem.scrollWidth + 'px';
+            (indicator as HTMLElement).style.height = currentItem.scrollHeight + 'px';
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -101,6 +125,8 @@ export class ESJindicator implements ComponentInterface {
 
         const indicatorXmargin = (self.options.indicatorXmargin === 'auto') ? currentItem.clientWidth + 'px' : self.options.indicatorXmargin;
         const indicatorYmargin = (self.options.indicatorYmargin === 'auto') ? currentItem.clientHeight + 'px' : self.options.indicatorYmargin;
+
+
 
 
         self.options.events?.forEach(eventname => {
@@ -114,7 +140,7 @@ export class ESJindicator implements ComponentInterface {
                     if (currentItem.closest(`.${self.options.wrapperClass}`)?.contains(ew.target as HTMLElement)) {
                         (indicator as HTMLElement).style.visibility = 'visible';
                     } else {
-                        if(self.options.indicatorAnimationOut === '') {
+                        if (self.options.indicatorAnimationOut === '') {
                             (indicator as HTMLElement).style.visibility = 'hidden';
                         }
                         ESJinit.initializeAnimation(indicator as HTMLElement, self.options.indicatorAnimationOut as string, self.options.indicatorAnimationIn as string)
@@ -147,6 +173,12 @@ export class ESJindicator implements ComponentInterface {
             y = y - currentItem.scrollHeight;
         }
 
+
+        if (self.options.eventsMaxSensitivity === false) {
+            x = currentItem.getBoundingClientRect().width;
+            y = currentItem.getBoundingClientRect().top;
+        }
+
         if (mode === 'both' || mode === 'x') {
             (indicator as HTMLElement).style.left = `${x}px`;
         }
@@ -169,7 +201,7 @@ export class ESJindicator implements ComponentInterface {
 
 
 
-        
+
 
 
 
