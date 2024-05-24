@@ -25,7 +25,7 @@ export interface ComponentGlobalOptions {
 export interface ComponentInterface {
     options: Partial<ComponentGlobalOptions>;
     ComponentRender(): void;
-    ComponentUi(elm: Element): void;
+    ComponentUi(elm: Element , any : any): void;
 }
 
 

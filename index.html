@@ -45,11 +45,28 @@
             width: 400px;
             padding: 30px;
             background-color: white;
-            box-shadow: 0px 0px 50px rgba(128, 128, 128, 0.1);
-            position: fixed;
-            visibility: hidden;
+    
+        
+            background-color: #ffffff;
+
+                color: rgb(117, 117, 117);
+                border: 2px solid #e2e2e2;
+              
+        }
+        ul {
+            padding: 0;
+            li {
+                padding: 20px;
+            }
+        }
+
+        .container {
+            background-color: #0a1f4b;
+            color: white;
             
-            
+        }
+        .side {
+            background-color: #091a3d;
         }
     </style>
     <link rel="stylesheet" href="style.css">
@@ -294,30 +311,71 @@
 
 
 
+<!-- <div class="main w3-row">
+
+    <section class="w3-container w3-col m3 w3-light-grey magic-menu">
+        <ul class="w3-column w3-center">
+               <li class="w3-row m3" data-bg="red">
+                  TypeScript
+               </li>
+               <li  class="w3-row m3" data-bg="black">
+                  Javascript
+               </li>
+               <li class="w3-row m3" data-bg="orange">
+                  jQuery
+               </li>
+               <li class="w3-row m3" data-bg="green">
+                  React
+               </li>
+        </ul>
+
+        <div class="w3-container indicator-wrapper">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis eligendi repellat possimus debitis consectetur. Accusantium eos magni molestiae quos, blanditiis quibusdam necessitatibus quisquam, repellendus hic fugiat earum! Possimus, dolore distinctio.
+        </div>
+   </section>
+   <div class="data w3-col m7">
+    Lorem ipsum dolor, sit am  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt asperiores quibusdam dolor et alias, explicabo rerum corporis officiis exercitationem accusamus nemo aperiam vel laborum qui sequi architecto. Error, iste veritatis.  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt asperiores quibusdam dolor et alias, explicabo rerum corporis officiis exercitationem accusamus nemo aperiam vel laborum qui sequi architecto. Error, iste veritatis.  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt asperiores quibusdam dolor et alias, explicabo rerum corporis officiis exercitationem accusamus nemo aperiam vel laborum qui sequi architecto. Error, iste veritatis.  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt asperiores quibusdam dolor et alias, explicabo rerum corporis officiis exercitationem accusamus nemo aperiam vel laborum qui sequi architecto. Error, iste veritatis.  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nesciunt asperiores quibusdam dolor et alias, explicabo rerum corporis officiis exercitationem accusamus nemo aperiam vel laborum qui sequi architecto. Error, iste veritatis.et consectetur adipisicing elit. Nesciunt asperiores quibusdam dolor et alias, explicabo rerum corporis officiis exercitationem accusamus nemo aperiam vel laborum qui sequi architecto. Error, iste veritatis.
+</div>
+</div> -->
 
 
+   
+<section class="container w3-light-grey">
+        <ul style="display: flex; align-items: center; justify-content: space-between;">
+            <li class="item">
+                <img src="https://static-00.iconduck.com/assets.00/typescript-icon-icon-2048x2048-2rhh1z66.png" width="30px" height="30px" alt="">
+                TypeScript
+            </li>
+            <li class="item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" width="30px" height="30px" alt="">
+                Javascript
+            </li>
+            <li class="item">
+                <img src="https://hdpng.com/images/logo-jquery-png--512.png" width="30px" height="30px" alt="">
+                jQuery
+            </li>
+            <li class="item">
+                <img src="https://static-00.iconduck.com/assets.00/react-javascript-js-framework-facebook-icon-512x455-jctj7y5w.png" width="30px" height="30px" alt="">
+                React
+            </li>
+            <li class="item">
+                
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/1280px-Sass_Logo_Color.svg.png" width="30px" height="30px" alt="">
+                Scss
+            </li>
+            <li class="item">
+                <img src="https://w3schoolsua.github.io/images/w3css_logo.png" width="30px" height="30px" alt="">
+                
+                W3css
+            </li>
+            
+        </ul>
+    </div>
 
-     <section class="w3-container w3-light-grey magic-menu">
-          <ul class="w3-row w3-center">
-                 <li class="w3-col m3">
-                    TypeScript
-                 </li>
-                 <li  class="w3-col m3">
-                    Javascript
-                 </li>
-                 <li class="w3-col m3">
-                    jQuery
-                 </li>
-                 <li class="w3-col m3">
-                    React
-                 </li>
-          </ul>
-
-          <div class="w3-container indicator-wrapper">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis eligendi repellat possimus debitis consectetur. Accusantium eos magni molestiae quos, blanditiis quibusdam necessitatibus quisquam, repellendus hic fugiat earum! Possimus, dolore distinctio.
-          </div>
-     </section>
-
+</section>
+<div class="w3-container indicator-wrapper">
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis eligendi repellat possimus debitis consectetur. Accusantium eos magni molestiae quos, blanditiis quibusdam necessitatibus quisquam, repellendus hic fugiat earum! Possimus, dolore distinctio.
+  </div>
 
 
 
@@ -329,40 +387,52 @@
 
 
 
-        // EasyJS.component('indicator',{
-        //     wrapperClass: 'magic-menu',
-        //     itemClass: 'w3-col',
-        //     indicatorClass : 'indicator-wrapper'
-        // })
+        EasyJS.component('indicator',{
+            wrapperClass: 'magic-menu',
+            itemsClass: 'item',
+            indicatorClass : 'indicator-wrapper',
+            mode:'x',
+            indicatorDefaultHidden: false,
+            indicatorAnimationSpeed: '1s',
+            events: ['click'],
+            indicatorRatio : 'center',
+            indicatorXmargin: '0px',
+            indicatorYmargin: '-0px',
+            indicatorMove: function(indicator,item){
+          
+                indicator.innerHTML = item.innerHTML
+     
+            }
+        })
 
 
  
 
 
 
-document.querySelectorAll('.magic-menu li[class]').forEach(function(item){
-    const indicator = document.querySelector('.indicator-wrapper');
-    window.addEventListener('mousemove',function(we){
-        if(!we.target.className.split(' ').includes('w3-col')) {
-            indicator.style = `visibility: hidden;`;
-        }
-    })
-    item.addEventListener('mousemove',function(e){
-        const y = e.pageY;
-        const x = e.pageX;
+// document.querySelectorAll('.magic-menu li[class]').forEach(function(item){
+//     const indicator = document.querySelector('.indicator-wrapper');
+//     window.addEventListener('mousemove',function(we){
+//         if(!we.target.className.split(' ').includes('w3-col')) {
+//             indicator.style = `visibility: hidden;`;
+//         }
+//     })
+//     item.addEventListener('mousemove',function(e){
+//         const y = e.pageY;
+//         const x = e.pageX;
 
-        item.closest('.magic-menu').querySelectorAll('li').forEach(function(elm){
-            elm.classList.remove('w3-pink');
-        })
+//         item.closest('.magic-menu').querySelectorAll('li').forEach(function(elm){
+//             elm.classList.remove('w3-pink');
+//         })
 
-        item.classList.add('w3-pink');
+//         item.classList.add('w3-pink');
 
       
-        indicator.style = `left: ${x}px; visibility: visible; transition: 1s;`;
+//         indicator.style = `left: ${x}px; visibility: visible; transition: 1s;`;
       
-    })
+//     })
    
-})
+// })
 
 
 
