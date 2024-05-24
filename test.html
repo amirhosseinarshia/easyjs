@@ -13,6 +13,10 @@
         }
 
 
+         *{
+            margin: 0;
+            list-style: none;
+         }
 
 
 
@@ -41,7 +45,7 @@
             background-color: #3f3f3f !important;
         }
 
-        .indicator-wrapper {
+        .indicator-wrapper  , .indicator-wrapper2{
             width: 400px;
             padding: 30px;
             background-color: white;
@@ -51,6 +55,12 @@
 
                 color: rgb(117, 117, 117);
                 border: 2px solid #e2e2e2;
+                img {
+                    width: 80px;
+                    height: 80px;
+                }
+                font-size: x-large;
+                font-weight: 900;
               
         }
         ul {
@@ -340,7 +350,7 @@
 
 
    
-<section class="container w3-light-grey">
+<section class="container w3-light-grey magic-menu">
         <ul style="display: flex; align-items: center; justify-content: space-between;">
             <li class="item">
                 <img src="https://static-00.iconduck.com/assets.00/typescript-icon-icon-2048x2048-2rhh1z66.png" width="30px" height="30px" alt="">
@@ -370,12 +380,51 @@
             </li>
             
         </ul>
+        <div class="w3-container indicator-wrapper">
+        
+          </div>
+        
     </div>
 
 </section>
-<div class="w3-container indicator-wrapper">
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis eligendi repellat possimus debitis consectetur. Accusantium eos magni molestiae quos, blanditiis quibusdam necessitatibus quisquam, repellendus hic fugiat earum! Possimus, dolore distinctio.
-  </div>
+
+
+  <section class="container w3-light-grey magic-menu2">
+    <ul style="display: flex; align-items: center; justify-content: space-between;">
+        <li class="item">
+            <img src="https://static-00.iconduck.com/assets.00/typescript-icon-icon-2048x2048-2rhh1z66.png" width="30px" height="30px" alt="">
+            TypeScript
+        </li>
+        <li class="item">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" width="30px" height="30px" alt="">
+            Javascript
+        </li>
+        <li class="item">
+            <img src="https://hdpng.com/images/logo-jquery-png--512.png" width="30px" height="30px" alt="">
+            jQuery
+        </li>
+        <li class="item">
+            <img src="https://static-00.iconduck.com/assets.00/react-javascript-js-framework-facebook-icon-512x455-jctj7y5w.png" width="30px" height="30px" alt="">
+            React
+        </li>
+        <li class="item">
+            
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sass_Logo_Color.svg/1280px-Sass_Logo_Color.svg.png" width="30px" height="30px" alt="">
+            Scss
+        </li>
+        <li class="item">
+            <img src="https://w3schoolsua.github.io/images/w3css_logo.png" width="30px" height="30px" alt="">
+            
+            W3css
+        </li>
+        
+    </ul>
+    <div class="w3-container indicator-wrapper2">
+
+        </div>
+</div>
+
+</section>
 
 
 
@@ -392,8 +441,8 @@
             itemsClass: 'item',
             indicatorClass : 'indicator-wrapper',
             mode:'x',
-            indicatorDefaultHidden: false,
-            indicatorAnimationSpeed: '1s',
+            indicatorDefaultHidden: true,
+            indicatorMovingSpeed: '1s',
             events: ['click'],
             indicatorRatio : 'center',
             indicatorXmargin: '0px',
@@ -401,12 +450,34 @@
             indicatorMove: function(indicator,item){
           
                 indicator.innerHTML = item.innerHTML
-     
+ 
+            }
+            ,
+            indicatorStop: function(indicator,item){
+    
             }
         })
 
 
  
+        EasyJS.component('indicator',{
+            wrapperClass: 'magic-menu2',
+            itemsClass: 'item',
+            indicatorClass : 'indicator-wrapper2',
+            mode:'x',
+            indicatorDefaultHidden: true,
+            indicatorMovingSpeed: '0.5s',
+            events: ['mouseover'],
+            indicatorRatio : 'center',
+            indicatorXmargin: '0px',
+            indicatorYmargin: '0px',
+            indicatorMove: function(indicator,item){
+                indicator.innerHTML = item.innerHTML
+            },
+            hideIndicatorWhenEventTargetNotAnIndicatorObject : true
+        })
+
+
 
 
 

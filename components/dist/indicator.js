@@ -7,15 +7,15 @@ export class ESJindicator {
             indicatorDefaultHidden: false, // done
             indicatorAnimationIn: '',
             indicatorAnimationOut: '',
-            hideIndicatorWhenEventTargetNotAnItem: false,
-            indicatorMove: (indicator, targetItem) => { },
-            indicatorStop: (indicator, targetItem) => { },
-            indicatorMovingSpeed: '0.5s',
-            indicatorAnimationSpeed: '0.5s',
-            indicatorPositionMode: 'absolute', // done
-            indicatorRatio: 'center',
-            indicatorYmargin: '0',
-            indicatorXmargin: 'auto',
+            hideIndicatorWhenEventTargetNotAnIndicatorObject: false,
+            indicatorMove: (indicator, targetItem) => { }, // done
+            indicatorStop: (indicator, targetItem) => { }, // done
+            indicatorMovingSpeed: '0.5s', // done
+            indicatorAnimationSpeed: '0.5s', // done
+            indicatorPositionMode: 'relative', // done
+            indicatorRatio: 'center', // done
+            indicatorYmargin: '0', // done
+            indicatorXmargin: 'auto', // done
         };
         this.options = ESJinit.findEndOptions(this.options, options);
         ESJinit.CheckRequiredOptions([
@@ -29,11 +29,15 @@ export class ESJindicator {
         var _a;
         const self = this;
         //  document.querySelector(`.${this.options.indicatorClass as string}`).style = 'position: fixed; visibility: hidden;';
-        document.querySelector(`.${this.options.indicatorClass}`).style = `position: ${this.options.indicatorPositionMode}; visibility: ${(this.options.indicatorDefaultHidden === true) ? 'hidden' : 'visible'};`;
+        document.querySelectorAll(`.${self.options.indicatorClass}`).forEach((element) => {
+            element.style = `position: ${self.options.indicatorPositionMode}; visibility: ${(self.options.indicatorDefaultHidden === true) ? 'hidden' : 'visible'};`;
+        });
         (_a = this.options.events) === null || _a === void 0 ? void 0 : _a.forEach(eventname => {
-            document.querySelectorAll(`.${self.options.itemsClass}`).forEach((item) => {
-                item.addEventListener(`${eventname}`, function (e) {
-                    self.ComponentUi(item, e);
+            document.querySelectorAll(`.${self.options.wrapperClass}`).forEach((wrap) => {
+                wrap.querySelectorAll(`.${self.options.itemsClass}`).forEach((item) => {
+                    item.addEventListener(`${eventname}`, function (e) {
+                        self.ComponentUi(item, e);
+                    });
                 });
             });
         });
@@ -44,6 +48,7 @@ export class ESJindicator {
         let y = event.pageY;
         let x = event.pageX;
         const indicator = document.querySelector(`.${self.options.indicatorClass}`);
+        indicator.style.visibility = 'visible';
         const indicatorWidth = indicator === null || indicator === void 0 ? void 0 : indicator.clientWidth;
         const indicatorHeight = indicator === null || indicator === void 0 ? void 0 : indicator.clientHeight;
         const indicatorXmargin = (self.options.indicatorXmargin === 'auto') ? currentItem.clientWidth + 'px' : self.options.indicatorXmargin;
@@ -74,8 +79,12 @@ export class ESJindicator {
             indicator.style.top = `${y}px`;
         }
         indicator.style.margin = `${indicatorYmargin} ${indicatorXmargin}`;
-        indicator.style.transition = `${this.options.indicatorAnimationSpeed} `;
+        indicator.style.transition = `${this.options.indicatorMovingSpeed} `;
         if (self.options.indicatorMove)
             self.options.indicatorMove(indicator, currentItem);
+        indicator === null || indicator === void 0 ? void 0 : indicator.addEventListener('transitionend', function () {
+            if (self.options.indicatorStop)
+                self.options.indicatorStop(indicator, currentItem);
+        });
     }
 }

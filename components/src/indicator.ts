@@ -10,7 +10,7 @@ interface ComponentSpecialOptions extends ComponentGlobalOptions {
     indicatorAnimationOut: string,
     indicatorAnimationSpeed: string,
     indicatorMovingSpeed: string,
-    hideIndicatorWhenEventTargetNotAnItem: boolean,
+    hideIndicatorWhenEventTargetNotAnIndicatorObject: boolean,
     indicatorMove: CallableFunction,
     indicatorStop: CallableFunction,
     indicatorPositionMode: string,
@@ -25,15 +25,15 @@ export class ESJindicator implements ComponentInterface {
         indicatorDefaultHidden: false, // done
         indicatorAnimationIn: '',
         indicatorAnimationOut: '',
-        hideIndicatorWhenEventTargetNotAnItem: false,
-        indicatorMove: (indicator: Element, targetItem: Element) => { },
-        indicatorStop: (indicator: Element, targetItem: Element) => { },
-        indicatorMovingSpeed: '0.5s',
-        indicatorAnimationSpeed: '0.5s',
-        indicatorPositionMode: 'absolute', // done
-        indicatorRatio: 'center',
-        indicatorYmargin: '0',
-        indicatorXmargin: 'auto',
+        hideIndicatorWhenEventTargetNotAnIndicatorObject: false,
+        indicatorMove: (indicator: Element, targetItem: Element) => { }, // done
+        indicatorStop: (indicator: Element, targetItem: Element) => { }, // done
+        indicatorMovingSpeed: '0.5s', // done
+        indicatorAnimationSpeed: '0.5s', // done
+        indicatorPositionMode: 'relative', // done
+        indicatorRatio: 'center', // done
+        indicatorYmargin: '0', // done
+        indicatorXmargin: 'auto', // done
     };
     constructor(options: Partial<ComponentSpecialOptions> = {}) {
         this.options = ESJinit.findEndOptions(this.options, options);
@@ -48,15 +48,31 @@ export class ESJindicator implements ComponentInterface {
     ComponentRender(): void {
         const self: ESJindicator = this;
         //  document.querySelector(`.${this.options.indicatorClass as string}`).style = 'position: fixed; visibility: hidden;';
-        (document.querySelector(`.${this.options.indicatorClass}`) as any).style = `position: ${this.options.indicatorPositionMode}; visibility: ${(this.options.indicatorDefaultHidden === true) ? 'hidden' : 'visible'};`;
+        (document.querySelectorAll(`.${self.options.indicatorClass}`) as any).forEach((element: HTMLElement) => {
+            (element as any).style = `position: ${self.options.indicatorPositionMode}; visibility: ${(self.options.indicatorDefaultHidden === true) ? 'hidden' : 'visible'};`
+        });
+
+
 
 
         this.options.events?.forEach(eventname => {
-            document.querySelectorAll(`.${self.options.itemsClass}`).forEach((item) => {
-                item.addEventListener(`${eventname}`, function (e) {
-                    self.ComponentUi(item, e);
+
+
+
+
+
+            document.querySelectorAll(`.${self.options.wrapperClass}`).forEach((wrap) => {
+                wrap.querySelectorAll(`.${self.options.itemsClass}`).forEach((item) => {
+
+
+
+                    item.addEventListener(`${eventname}`, function (e) {
+
+                        self.ComponentUi(item, e);
+                    })
                 })
             })
+
         });
 
 
@@ -67,11 +83,12 @@ export class ESJindicator implements ComponentInterface {
         let y: number = event.pageY;
         let x: number = event.pageX;
         const indicator: HTMLElement | null = document.querySelector(`.${self.options.indicatorClass}`);
+        (indicator as HTMLElement).style.visibility = 'visible'
         const indicatorWidth = indicator?.clientWidth as number;
         const indicatorHeight = indicator?.clientHeight as number;
 
-        const indicatorXmargin = (self.options.indicatorXmargin === 'auto') ? currentItem.clientWidth+'px' : self.options.indicatorXmargin;
-        const indicatorYmargin = (self.options.indicatorYmargin === 'auto') ? currentItem.clientHeight+'px' : self.options.indicatorYmargin;
+        const indicatorXmargin = (self.options.indicatorXmargin === 'auto') ? currentItem.clientWidth + 'px' : self.options.indicatorXmargin;
+        const indicatorYmargin = (self.options.indicatorYmargin === 'auto') ? currentItem.clientHeight + 'px' : self.options.indicatorYmargin;
 
 
         self.options.events?.forEach(eventname => {
@@ -81,11 +98,11 @@ export class ESJindicator implements ComponentInterface {
                     (indicator as HTMLElement).style.left = `${window.innerWidth - indicatorWidth}px`;
                 }
 
-                if((indicator as HTMLElement).getBoundingClientRect().left < 0 && mode === 'x') {
+                if ((indicator as HTMLElement).getBoundingClientRect().left < 0 && mode === 'x') {
                     (indicator as HTMLElement).style.left = `0px`;
                 }
 
-             
+
             })
 
         });
@@ -109,12 +126,13 @@ export class ESJindicator implements ComponentInterface {
 
 
 
-       (indicator as HTMLElement).style.margin = `${indicatorYmargin} ${indicatorXmargin}`;
-        
+        (indicator as HTMLElement).style.margin = `${indicatorYmargin} ${indicatorXmargin}`;
 
 
 
-        (indicator as HTMLElement).style.transition = `${this.options.indicatorAnimationSpeed} `;
+
+        (indicator as HTMLElement).style.transition = `${this.options.indicatorMovingSpeed} `;
+
 
 
 
@@ -124,6 +142,11 @@ export class ESJindicator implements ComponentInterface {
 
         if (self.options.indicatorMove)
             self.options.indicatorMove(indicator, currentItem);
+
+        indicator?.addEventListener('transitionend', function () {
+            if (self.options.indicatorStop)
+                self.options.indicatorStop(indicator, currentItem);
+        })
 
     }
 }
